@@ -1,22 +1,22 @@
 <!-- Character Top.Start -->
 <div class="row top-bar">
-    <div class="col-avatar">
-        <div class="avatar">
-            <img src="{$url}application/images/avatars/{$avatar}.gif"/>
-        </div>
-    </div>
-    <div class="col-9 col-md-10 ps-4">
-        <div class="d-flex h-100 align-items-center">
-            <span class="h1 color-c{$class}">{$name}</span>
-            <div class="border-start border-2 ms-3 ps-3">
-                <div class=""> {$raceName} {$className}</div>
-                <div class="">{if $guildName}<a href="{$url}guild/{$realmId}/{$guild}">❮{$guildName}❯</a>{/if} {$realmName}</div>
-            </div>
-        </div>
-    </div>
+	<div class="col-avatar">
+		<div class="avatar">
+			<img src="{$url}application/images/avatars/{$avatar}.gif"/>
+		</div>
+	</div>
+	<div class="col-9 col-md-10 ps-4">
+		<div class="d-flex h-100 align-items-center">
+			<span class="h1 color-c{$class}">{$name}</span>
+			<div class="border-start border-2 ms-3 ps-3">
+				<div class=""> {$raceName} {$className}</div>
+				<div class="">{if $guildName}<a href="{$url}guild/{$realmId}/{$guild}">❮{$guildName}❯</a>{/if} {$realmName}</div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- Character Top.End -->
-<hr class="my-5"/>
+<hr class="my-5" />
 <!-- Character Main.Start -->
 <div class="row {if $faction == 1}bg-faction alliance{elseif $faction == 2}bg-faction horde{/if}">
 	<div class="col-items">
@@ -59,7 +59,7 @@
 <!-- Character Main.End -->
 <hr class="my-5" />
 <!-- Character Bars.Start -->
-<div class="row my-5" id="bars">
+<div class="row my-5">
 	<div class="col-6">
 		{if isset($stats.maxhealth)}
 			{if $stats.maxhealth && $stats.maxhealth != "Unknown"}
@@ -94,7 +94,7 @@
 <!-- Character Bars.End -->
 
 <!--Characters Attributes.Start -->
-<div class="row" id="attributes">
+<div class="row">
 	<div class="col-md-6">
 		<div class="section-header">{lang("attributes", "character")}</div>
 		<div class="section-body">
@@ -107,6 +107,7 @@
 					<td>{lang("sta", "character")}</td>
 					<td class="text-end">{if isset($stats.stamina)}{$stats.stamina}{else}{lang("unknown", "character")}{/if}</td>
 				</tr>
+
 				{if $stats && array_key_exists("agility", $stats)}
 				<tr>
 					<td>{lang("agi", "character")}</td>
