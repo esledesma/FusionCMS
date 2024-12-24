@@ -1,8 +1,8 @@
 <?php
 
-$config['max_level'] = '80';
+$config['max_level'] = 90;
 
-$config['description'] = "With this option, you can bring your character to the last Level " . $config['max_level'];
+$config['description'] = "With this option, you can bring your character to the last Level 90";
 
 $config['price_lvl'] = [
     60 => 5,
