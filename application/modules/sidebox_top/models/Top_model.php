@@ -30,7 +30,15 @@ class Top_model extends CI_Model
     {
         $this->connect();
 
-        $result = $this->connection->query("SELECT " . table("characters", $this->realmId) . "." . column("characters", "guid", false, $this->realmId) . "," . table("characters", $this->realmId) . "." . column("characters", "name", false, $this->realmId) . "," . table("characters", $this->realmId) . "." . column("characters", "gender", false, $this->realmId) . "," . table("characters", $this->realmId) . "." . column("characters", "class", false, $this->realmId) . "," . table("characters", $this->realmId) . "." . column("characters", "race", false, $this->realmId) . ", COUNT(character_achievement.achievement) AS achievement_points FROM character_achievement RIGHT JOIN " . table("characters", $this->realmId) . " ON " . table("characters", $this->realmId) . "." . column("characters", "guid", false, $this->realmId) . " = character_achievement.`guid` GROUP BY " . table("characters", $this->realmId) . "." . column("characters", "guid", false, $this->realmId) . " ORDER BY achievement_points DESC LIMIT ?", [$limit]);
+        $result = $this->connection->query("SELECT " . table("characters", $this->realmId) . "." . column("characters", "guid", false, $this->realmId) . ","
+                                                     . table("characters", $this->realmId) . "." . column("characters", "name", false, $this->realmId) . ","
+                                                     . table("characters", $this->realmId) . "." . column("characters", "gender", false, $this->realmId) . ","
+                                                     . table("characters", $this->realmId) . "." . column("characters", "class", false, $this->realmId) . ","
+                                                     . table("characters", $this->realmId) . "." . column("characters", "race", false, $this->realmId)
+                                                     . ", COUNT(character_achievement.achievement) AS achievement_points FROM character_achievement RIGHT JOIN "
+                                                     . table("characters", $this->realmId) . " ON "
+                                                     . table("characters", $this->realmId) . "." . column("characters", "guid", false, $this->realmId)
+                                                     . " = character_achievement.`guid` GROUP BY " . table("characters", $this->realmId) . "." . column("characters", "guid", false, $this->realmId) . " ORDER BY achievement_points DESC LIMIT ?", [$limit]);
 
         return $this->getResult($result);
     }
@@ -39,7 +47,16 @@ class Top_model extends CI_Model
     {
         $this->connect();
 
-        $result = $this->connection->query('SELECT ' . table('guild', $this->realmId) . '.' . column('guild', 'guildid', false, $this->realmId) . ', ' . table('guild', $this->realmId) . '.' . column('guild', 'leaderguid', false, $this->realmId) . ', ' . table('guild', $this->realmId) . '.' . column('guild', 'name', false, $this->realmId) . ', COUNT(character_achievement.achievement) AS achievement_points FROM character_achievement LEFT JOIN ' . table('guild_member', $this->realmId) . ' ON ' . table('guild_member', $this->realmId) . '.' . column('guild_member', 'guid', false, $this->realmId) . ' = character_achievement.guid LEFT JOIN ' . table('guild', $this->realmId) . ' ON ' . table('guild', $this->realmId) . '.' . column('guild', 'guildid', false, $this->realmId) . ' = ' . table('guild_member', $this->realmId) . '.' . column('guild_member', 'guildid', false, $this->realmId) . '  WHERE ' . table('guild', $this->realmId) . '.' . column('guild', 'guildid', false, $this->realmId) . " <> '' GROUP BY " . table('guild', $this->realmId) . '.' . column('guild', 'guildid', false, $this->realmId) . ' ORDER BY achievement_points DESC LIMIT ?', [$limit]);
+        $result = $this->connection->query('SELECT ' . table('guild', $this->realmId) . '.' . column('guild', 'guildid', false, $this->realmId) . ', '
+                                                     . table('guild', $this->realmId) . '.' . column('guild', 'leaderguid', false, $this->realmId) . ', '
+                                                     . table('guild', $this->realmId) . '.' . column('guild', 'name', false, $this->realmId)
+                                                     . ', COUNT(character_achievement.achievement) AS achievement_points FROM character_achievement LEFT JOIN '
+                                                     . table('guild_member', $this->realmId) . ' ON ' . table('guild_member', $this->realmId) . '.' . column('guild_member', 'guid', false, $this->realmId)
+                                                     . ' = character_achievement.guid LEFT JOIN ' . table('guild', $this->realmId) . ' ON ' . table('guild', $this->realmId) . '.' . column('guild', 'guildid', false, $this->realmId)
+                                                     . ' = ' . table('guild_member', $this->realmId) . '.' . column('guild_member', 'guildid', false, $this->realmId)
+                                                     . '  WHERE ' . table('guild', $this->realmId) . '.' . column('guild', 'guildid', false, $this->realmId)
+                                                     . " <> '' GROUP BY " . table('guild', $this->realmId) . '.' . column('guild', 'guildid', false, $this->realmId)
+                                                     . ' ORDER BY achievement_points DESC LIMIT ?', [$limit]);
 
         if ($result && $result->getNumRows() > 0) {
             $results = $result->getResultArray();
@@ -162,6 +179,8 @@ class Top_model extends CI_Model
             foreach ($players as $key => $player) {
                 $players[$key]['rank'] = $i;
                 $players[$key]['guild'] = $this->getGuildName($player[column("characters", "guid", false, $this->realmId)]);
+                $players[$key]['nomber_faction'] = $this->addNomberFaction($player['race']);
+                $players[$key]['number_faction'] = $this->addNumberFaction($player['race']);
                 $i++;
             }
 
@@ -170,4 +189,66 @@ class Top_model extends CI_Model
 
         return false;
     }
+
+    private function addNomberFaction($num): string
+    {
+        switch ($num) {
+            # Aliance
+            case 1:
+            case 3:
+            case 4:
+            case 7:
+            case 11:
+            case 22:
+            case 25: 
+                return 'Aliance';
+                break;
+            
+            # Horde
+            case 2:
+            case 5:
+            case 6:
+            case 8:
+            case 9:
+            case 10:
+            case 26:
+                return 'Horde';
+                break;
+            default:
+                return '';
+                break;
+        }
+    }
+
+    private function addNumberFaction($num): string
+    {
+        switch ($num) {
+            # Aliance
+            case 1:
+            case 3:
+            case 4:
+            case 7:
+            case 11:
+            case 22:
+            case 25: 
+                return 1;
+                break;
+            
+            # Horde
+            case 2:
+            case 5:
+            case 6:
+            case 8:
+            case 9:
+            case 10:
+            case 26:
+                return 2;
+                break;
+            default:
+                return '';
+                break;
+        }
+    }
+
+
 }

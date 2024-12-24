@@ -72,7 +72,8 @@ class Status extends MX_Controller
             $first_date = new DateTime(date('Y-m-d h:i:s', $last['starttime']));
             $second_date = new DateTime(date('Y-m-d h:i:s'));
 
-            $difference = $first_date->diff($second_date);
+            #$difference = $first_date->diff($second_date);
+            $difference = $second_date->diff($first_date);
 
             return $this->format_interval($difference);
         } else {

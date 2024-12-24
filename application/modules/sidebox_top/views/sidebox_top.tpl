@@ -120,20 +120,29 @@
                             {if $realm.totalKills}
                                 <div class="table-responsive text-nowrap">
                                     <table class="nice_table mb-1">
-                                        <thead></thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>{lang('race', 'sidebox_top')}</td>
+                                            <td>{lang('faction', 'sidebox_top')}</td>
+                                            <td>{lang('character', 'sidebox_top')}</td>
+                                            <td>{lang('guild', 'sidebox_top')}</td>
+                                            <td>{lang('kills', 'sidebox_top')}</td>
+                                        </tr>
                                         {foreach from=$realm.totalKills item=character}
                                             <tr>
-                                                <td class="col-1 rank">
+                                                <td class="col-1">
                                                     {if $character.rank == 1 || $character.rank == 2 || $character.rank == 3}
                                                         <img width="16px" height="16px"
                                                              src="{$url}application/modules/sidebox_top/images/{$character.rank}.ico"/>
                                                     {/if}
                                                 </td>
-                                                <td class="col-2 stats_name">
-                                                    <img src="{$url}application/images/stats/{$character.race}-{$character.gender}.gif"
-                                                         width="20px">
-                                                    <img src="{$url}application/images/stats/{$character.class}.gif"
-                                                         width="20px">
+                                                <td class="col-1 stats_name">
+                                                    <img src="{$url}application/images/stats/{$character.race}-{$character.gender}.gif" width="20px" />
+                                                    <img src="{$url}application/images/stats/{$character.class}.gif" width="20px" />
+                                                </td>
+                                                <td class="col-1 stats_name">
+                                                    <img src="{$url}application/modules/sidebox_top/images/faction-{$character.number_faction}.jpg"
+                                                         width="20px"/>
                                                 </td>
 
                                                 <td class="col-3">
@@ -147,7 +156,7 @@
                                                     {$character.guild}
                                                 </td>
 
-                                                <td class="col-5">Kills : {$character.totalKills}</td>
+                                                <td class="col-5">{$character.totalKills}</td>
                                             </tr>
                                         {/foreach}
                                     </table>
@@ -161,22 +170,32 @@
                             {if $realm.yesterdayKills}
                                 <div class="table-responsive text-nowrap">
                                     <table class="nice_table mb-1">
-                                        <thead></thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>{lang('race', 'sidebox_top')}</td>
+                                            <td>{lang('faction', 'sidebox_top')}</td>
+                                            <td>{lang('character', 'sidebox_top')}</td>
+                                            <td>{lang('guild', 'sidebox_top')}</td>
+                                            <td>{lang('kills', 'sidebox_top')}</td>
+                                        </tr>
                                         {foreach from=$realm.yesterdayKills item=character}
                                             <tr>
-                                                <td class="col-1 rank">
+                                                <td class="col-1">
                                                     {if $character.rank == 1 || $character.rank == 2 || $character.rank == 3}
                                                         <img width="16px" height="16px"
                                                              src="{$url}application/modules/sidebox_top/images/{$character.rank}.ico"/>
                                                     {/if}
                                                 </td>
-                                                <td class="col-2 stats_name">
+                                                <td class="col-1 stats_name">
                                                     <img src="{$url}application/images/stats/{$character.race}-{$character.gender}.gif"
                                                          width="20px">
                                                     <img src="{$url}application/images/stats/{$character.class}.gif"
                                                          width="20px">
                                                 </td>
-
+                                                <td class="col-1 stats_name">
+                                                    <img src="{$url}application/modules/sidebox_top/images/faction-{$character.number_faction}.jpg"
+                                                         width="20px"/>
+                                                </td>
                                                 <td class="col-3">
                                                     <a href="{$url}character/{$realm.id}/{$character.guid}/"
                                                        data-character-tip="{$character.guid}" data-realm="{$realm.id}">
@@ -188,7 +207,7 @@
                                                     {$character.guild}
                                                 </td>
 
-                                                <td class="col-5">Kills : {$character.yesterdayKills}</td>
+                                                <td class="col-5">{$character.yesterdayKills}</td>
                                             </tr>
                                         {/foreach}
                                     </table>
@@ -203,20 +222,31 @@
                             {if $realm.todayKills}
                                 <div class="table-responsive text-nowrap">
                                     <table class="nice_table mb-1">
-                                        <thead></thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>{lang('race', 'sidebox_top')}</td>
+                                            <td>{lang('faction', 'sidebox_top')}</td>
+                                            <td>{lang('character', 'sidebox_top')}</td>
+                                            <td>{lang('guild', 'sidebox_top')}</td>
+                                            <td>{lang('kills', 'sidebox_top')}</td>
+                                        </tr>
                                         {foreach from=$realm.todayKills item=character}
                                             <tr>
-                                                <td class="col-1 rank">
+                                                <td class="col-1">
                                                     {if $character.rank == 1 || $character.rank == 2 || $character.rank == 3}
                                                         <img width="16px" height="16px"
                                                              src="{$url}application/modules/sidebox_top/images/{$character.rank}.ico"/>
                                                     {/if}
                                                 </td>
-                                                <td class="col-2 stats_name">
+                                                <td class="col-1 stats_name">
                                                     <img src="{$url}application/images/stats/{$character.race}-{$character.gender}.gif"
                                                          width="20px">
                                                     <img src="{$url}application/images/stats/{$character.class}.gif"
                                                          width="20px">
+                                                </td>
+                                                <td class="col-2 stats_name">
+                                                    <img src="{$url}application/modules/sidebox_top/images/faction-{$character.number_faction}.jpg"
+                                                         width="20px"/>
                                                 </td>
 
                                                 <td class="col-3">
@@ -230,7 +260,7 @@
                                                     {$character.guild}
                                                 </td>
 
-                                                <td class="col-5 user-points">Kills : {$character.todayKills}</td>
+                                                <td class="col-5 user-points">{$character.todayKills}</td>
                                             </tr>
                                         {/foreach}
                                     </table>
@@ -258,22 +288,32 @@
                             {if $realm.achivements}
                                 <div class="table-responsive text-nowrap">
                                     <table class="nice_table mb-1">
-                                        <thead></thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>{lang('race', 'sidebox_top')}</td>
+                                            <td>{lang('faction', 'sidebox_top')}</td>
+                                            <td>{lang('character', 'sidebox_top')}</td>
+                                            <td>{lang('guild', 'sidebox_top')}</td>
+                                            <td>{lang('points', 'sidebox_top')}</td>
+                                        </tr>
                                         {foreach from=$realm.achivements item=character}
                                             <tr>
-                                                <td class="col-1 rank">
+                                                <td class="col-1">
                                                     {if $character.rank == 1 || $character.rank == 2 || $character.rank == 3}
                                                         <img width="16px" height="16px"
                                                              src="{$url}application/modules/sidebox_top/images/{$character.rank}.ico"/>
                                                     {/if}
                                                 </td>
-                                                <td class="col-2 stats_name">
+                                                <td class="col-1 stats_name">
                                                     <img src="{$url}application/images/stats/{$character.race}-{$character.gender}.gif"
                                                          width="20px">
                                                     <img src="{$url}application/images/stats/{$character.class}.gif"
                                                          width="20px">
                                                 </td>
-
+                                                <td class="col-1 stats_name">
+                                                    <img src="{$url}application/modules/sidebox_top/images/faction-{$character.number_faction}.jpg"
+                                                         width="20px"/>
+                                                </td>
                                                 <td class="col-3">
                                                     <a href="{$url}character/{$realm.id}/{$character.guid}/"
                                                        data-character-tip="{$character.guid}" data-realm="{$realm.id}">
@@ -285,8 +325,9 @@
                                                     {$character.guild}
                                                 </td>
 
-                                                <td class="col-5 user-points">Points
-                                                    : {$character.achievement_points}</td>
+                                                <td class="col-5 user-points">
+                                                    {$character.achievement_points}
+                                                </td>
                                             </tr>
                                         {/foreach}
                                     </table>
@@ -311,16 +352,22 @@
                             {if $realm.guilds}
                                 <div class="table-responsive text-nowrap">
                                     <table class="nice_table mb-1">
-                                        <thead></thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>{lang('faction', 'sidebox_top')}</td>
+                                            <td>{lang('guilds', 'sidebox_top')}</td>
+                                            <td>{lang('guild_master', 'sidebox_top')}</td>
+                                            <td>{lang('points', 'sidebox_top')}</td>
+                                        </tr>
                                         {foreach from=$realm.guilds item=guild}
                                             <tr>
-                                                <td class="col-1 rank">
+                                                <td class="col-1">
                                                     {if $guild.rank == 1 || $guild.rank == 2 || $guild.rank == 3}
                                                         <img width="16px" height="16px"
                                                              src="{$url}application/modules/sidebox_top/images/{$guild.rank}.ico"/>
                                                     {/if}
                                                 </td>
-                                                <td class="col-2 stats_name">
+                                                <td class="col-1 stats_name">
                                                     <img src="{$url}application/modules/sidebox_top/images/faction-{$guild.faction}.jpg"
                                                          width="20px"/>
                                                 </td>
@@ -337,7 +384,7 @@
                                                     </a>
                                                 </td>
 
-                                                <td class="col-5 user-points">Points : {$guild.achievement_points}</td>
+                                                <td class="col-5 user-points">{$guild.achievement_points}</td>
                                             </tr>
                                         {/foreach}
                                     </table>
