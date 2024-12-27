@@ -8,6 +8,7 @@
 
 application/config/database.php
 application/config/fusion.php
+
 writable/*
 
 .php-cs-fixer.cache
@@ -16,3 +17,4 @@ install/.lock
 /vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/
 /vendor/**/.git
 /.idea/
+

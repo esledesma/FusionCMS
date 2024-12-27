@@ -28,8 +28,8 @@ $lang['race'] = "Race";
 $lang['class'] = "Class";
 
 $lang['guild'] = "Guild";
-$lang['guilds'] = "Guild";
-$lang['guild_master'] = "Guild";
+$lang['guilds'] = "Guilds";
+$lang['leader'] = "Leader";
 
 $lang['points'] = "Points";
 

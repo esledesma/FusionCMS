@@ -355,8 +355,8 @@
                                         <tr>
                                             <td></td>
                                             <td>{lang('faction', 'sidebox_top')}</td>
-                                            <td>{lang('guilds', 'sidebox_top')}</td>
-                                            <td>{lang('guild_master', 'sidebox_top')}</td>
+                                            <td>{lang('guild', 'sidebox_top')}</td>
+                                            <td>{lang('leader', 'sidebox_top')}</td>
                                             <td>{lang('points', 'sidebox_top')}</td>
                                         </tr>
                                         {foreach from=$realm.guilds item=guild}
@@ -380,7 +380,7 @@
                                                     <a href="{$url}character/{$realm.id}/{$guild.leaderguid}"
                                                        data-character-tip="{$guild.leaderguid}"
                                                        data-realm="{$realm.id}">
-                                                        Leader ({$guild.leaderName})
+                                                        {$guild.leaderName}
                                                     </a>
                                                 </td>
 
