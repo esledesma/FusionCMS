@@ -483,6 +483,15 @@ class External_account_model extends CI_Model
         }
     }
 
+    public function giveDp($userId, $dp)
+    {
+        $realmConnection = $this->getConnection();
+
+        if ($realmConnection) {
+            $realmConnection->query("UPDATE account SET dp = dp + ? WHERE id = ?", [($dp), $userId]);
+        }
+    }    
+
     /*
     | -------------------------------------------------------------------
     |  Getters

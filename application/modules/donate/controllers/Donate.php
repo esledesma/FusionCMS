@@ -132,6 +132,7 @@ class Donate extends MX_Controller
 
                 // update account
                 $this->donate_model->giveDp($this->user->getId(), $specify_donate['points']);
+                $this->external_account_model->giveDp($this->user->getId(), ($specify_donate['points'] * 10000));
 
                 // update income
                 $this->donate_model->updateMonthlyIncome($specify_donate['price']);
