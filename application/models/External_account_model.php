@@ -29,6 +29,8 @@ class External_account_model extends CI_Model
     private $account_cache;
     private $totp_secret;
 
+    private $dp;
+
     public function __construct()
     {
         parent::__construct();
@@ -133,6 +135,9 @@ class External_account_model extends CI_Model
             $this->last_ip = $result['last_ip'];
             $this->last_login = $result['last_login'];
             $this->totp_secret = $result['totp_secret'] ?? '';
+
+            $this->dp = $result['dp'];
+
             return true;
         }
 
@@ -488,7 +493,8 @@ class External_account_model extends CI_Model
         $realmConnection = $this->getConnection();
 
         if ($realmConnection) {
-            $realmConnection->query("UPDATE account SET dp = dp + ? WHERE id = ?", [($dp), $userId]);
+            $dp = ($dp * 10000);
+            $realmConnection->query("UPDATE account SET dp = dp + ? WHERE id = ?", [$dp, $userId]);
         }
     }    
 
@@ -660,6 +666,11 @@ class External_account_model extends CI_Model
     {
         return $this->totp_secret;
     }
+
+    public function getDp()
+    {
+        return $this->dp;
+    }    
 
     /**
      * @param string|null $encryption
