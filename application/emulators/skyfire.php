@@ -59,6 +59,7 @@ class Skyfire implements Emulator
             "expansion"     => "expansion",
             'salt'          => 'salt',
             'verifier'      => 'verifier',
+            'dp'            => 'dp',
         ],
 
         "account_access" => [
