@@ -13,8 +13,10 @@ use CodeIgniter\Database\BaseConnection;
 
 class Internal_user_model extends CI_Model
 {
+    private BaseConnection $connection;
     private $vp;
     private $dp;
+    private $external_dp;
     private $nickname;
     private $location;
     private $avatarId;
@@ -36,6 +38,20 @@ class Internal_user_model extends CI_Model
             $this->nickname = "";
             $this->language = $this->config->item('language');
             $this->avatarId = 1;
+        }
+    }
+
+    public function getConnection(): BaseConnection
+    {
+        $this->connect();
+
+        return $this->connection;
+    }
+
+    public function connect()
+    {
+        if (empty($this->connection)) {
+            $this->connection = $this->load->database("account_data", true);
         }
     }
 
@@ -201,7 +217,20 @@ class Internal_user_model extends CI_Model
 
     public function getDp()
     {
+        $userId = Services::session()->get('uid');
+
+        $external_dp = $this->get_external_dp() / 10000;
+        $internal_dp = $this->dp;
+        if ($external_dp != $internal_dp) {
+            $this->dp = $external_dp;
+            $this->setDp($userId, $this->dp);
+        } 
         return $this->dp;
+    }
+
+    public function get_external_dp()
+    {
+        return $this->external_account_model->getDp();
     }
 
     public function getLocation()
