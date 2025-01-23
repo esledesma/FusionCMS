@@ -219,7 +219,7 @@ class Internal_user_model extends CI_Model
     {
         $userId = Services::session()->get('uid');
 
-        $external_dp = intval($this->get_external_dp() / 10000);
+        $external_dp = $this->get_external_dp() / 10000;
         $internal_dp = $this->dp;
         if ($external_dp != $internal_dp) {
             $this->dp = $external_dp;
