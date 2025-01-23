@@ -314,6 +314,8 @@ $config['compress_output'] = true;
 */
 //$config['time_reference'] = 'gmt';
 
+date_default_timezone_set('America/Havana');
+
 /*
 |--------------------------------------------------------------------------
 | Rewrite PHP Short Tags
